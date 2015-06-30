@@ -1,0 +1,23 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="conteudo">
+		<h:form>
+		<h:panelGrid columns ="2">
+		<p:outputLabel for="campo-email" value="Enviar para:" />
+		<p:inputText value ="#{searchBean.email}" id="campo-email" />
+		<p:outputLabel for="campo-busca" value="Termo de busca:" />
+		<p:inputText value ="#{searchBean.searchValue}" id="campo-busca" />
+		<h:commandButton value ="Enviar busca" action ="#{searchBean.doSearchAndEmail}"/>		
+		<h:outputText  value="Busca efetuada. Email enviado se houver resultados." rendered ="#{searchBean.sent}" /> 
+	
+		</h:panelGrid >		
+		
+	
+		</h:form>
+</ui:define >
+</ui:composition >

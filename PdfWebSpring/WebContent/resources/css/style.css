@@ -1,0 +1,79 @@
+body {
+	font : 18px Arial ;
+	margin : auto;
+
+}
+
+h1 {
+	margin : 0;
+	padding : 16px 0;
+	color : #000000;
+	font : bold 40px Arial ;
+}
+
+h2 {
+	font : bold 24px Arial ;
+	color : #595959;
+}
+h2 {
+	font : bold 18px Arial ;
+	color : #595959;
+}
+
+
+input {
+	font-size : 16px;
+	border : 1px solid #0000c6;
+	background-color : #f6f6fa ;
+}
+
+.frag{
+	font: italic 12px Arial;
+}
+
+#header {
+
+	padding : 10px 0px 28px 10px;
+}
+
+#header a {
+
+	font : bold 24px Arial ;
+}
+
+#conteudo {
+	margin : 50px 0px 50px 10px;
+}
+#footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+
+.tabelaTermos{
+	width:700px;
+}
+a {
+	color : #3a34c3 ;
+	text-decoration : none ;
+}
+
+a: hover {
+	text-decoration : underline ;
+}
+
+.msgm{
+	font : 10px Arial ;
+}
+
+
+.center{
+	margin-left: 500px;
+}
+
+
+
+
+.clicked{
+	background-color: yellow;
+}

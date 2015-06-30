@@ -1,0 +1,28 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:define name="conteudo">
+
+    <h:form>
+        <h:messages />
+        <h:panelGrid columns="1">
+        		<h:outputText value="Olá, #{redirectorBean.usuario.nome}! Selecione uma ação." rendered="#{redirectorBean.logado}" />
+        
+        
+        	<h:commandButton value="Busca simples"  action="#{redirectorBean.simples}" />
+        	<h:commandButton value="Envio de email único" action="#{redirectorBean.unico}" />
+        	<h:commandButton value="Envio de email em massa" action="#{redirectorBean.massa}" />
+        	<h:commandButton value="Download e indexação" action="#{redirectorBean.downloadIndex}" />
+        	<h:commandButton value="Cadastro de termos" action="#{redirectorBean.cadastro}" />
+        	
+        	
+        	
+        </h:panelGrid>
+ 
+        
+    </h:form>
+</ui:define >
+</ui:composition >

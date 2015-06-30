@@ -1,0 +1,99 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="conteudo">
+
+		<h:outputStylesheet library ="css" name ="style2.css" />
+
+		<script src="#{request.contextPath}/resources/javascript/jquery-ui.1.11.2.js"/>
+		<script src="#{request.contextPath}/resources/javascript/pag.js.js"/>
+		<script language="javascript" src="#{request.contextPath}/resources/javascript/pag.js" charset="UTF-8"/>
+		
+		<!--  
+    	<script src="lib/fonts.js"></script>
+   	 	<script src="lib/cffStandardStrings.js"></script>
+    	<script src="lib/Encodings.js"></script>
+    	<script src="lib/glyphlist.js"></script>
+		<script src="#{request.contextPath}/resources/javascript/pd.js"></script>
+		<script src="#{request.contextPath}/resources/javascript/textlayerbuilder.js"></script>
+		-->
+		
+		<h:body>		
+			
+			
+				<f:metadata>				
+					<f:viewParam name="local" value="#{pdfBean.local}"/>
+					<f:viewParam name="data" value="#{pdfBean.data}"/>
+					<f:viewParam name="secao" value="#{pdfBean.secao}"/>
+					<f:viewParam name="pg"  value="#{pdfBean.pg}"/>
+					<f:viewParam name="update" value="#{pdfBean.update}"></f:viewParam>
+					<f:viewParam name="titulos" value="#{pdfBean.titulos}"></f:viewParam>
+					<f:viewParam name="search" value="#{pdfBean.searchValue}"/>
+					<f:event listener="#{pdfBean.pdfLoad}" type="preRenderView"></f:event>										
+				</f:metadata>
+				
+				<h:form id = "form">
+				
+				<h:panelGrid columns="4">			
+					
+					<h:commandButton value = "marcarTexto" action="#{pdfBean.highlightText}"  rendered="#{!pdfBean.highlightedText}" />
+						
+					<h:commandButton value = "desmarcarTexto" action="#{pdfBean.unHighlightText}"  rendered="#{pdfBean.highlightedText}" />
+						
+					<h:commandButton value = "desmarcarTítulo" action="#{pdfBean.unHighlightTerm}"  rendered="#{pdfBean.highlightedTerm}" />
+						
+					<h:commandButton value = "marcarTítulo" action="#{pdfBean.highlightTerm}"  rendered="#{!pdfBean.highlightedTerm}" />
+						
+					
+					<h:commandButton value = "desmarcarTudo" action="#{pdfBean.unHighlightAll()}"  rendered="#{pdfBean.highlightedTerm or pdfBean.highlightedText or pdfBean.highlightedTitle}"  />
+						
+					
+				
+				</h:panelGrid>
+							
+				<h:panelGrid columns="2" >
+					<h:panelGroup>				
+						<iframe id="framePdf" src="#{request.contextPath}/data/result5.pdf" style="width: 1000px; height: 800px;" frameborder="0" scrolling="no" >
+        					<p>Your web browser doesn't support iframes.</p>
+   						</iframe>
+   					</h:panelGroup>
+   					
+   					<h:panelGroup>
+   						<h:panelGrid columns="1">
+   							<ui:repeat var="title" value="#{pdfBean.titles}">
+   								<h:commandButton value="#{title}" action="#{pdfBean.highlightTitle(title)}" />
+   									
+   									
+   								<br/>
+   							</ui:repeat>
+   						</h:panelGrid>
+   					</h:panelGroup>
+   				</h:panelGrid>
+   					
+   				
+   				</h:form>
+   				 				
+					   
+			
+			<!--  
+				<object type="application/pdf" data="#{request.contextPath}/resources/temp/result4.pdf" height="850px" width="50%" >
+					<embed src="src/resource/temp/result.pdf" type="application/pdf"/>            	
+        		</object>
+        	-->
+        </h:body>
+        	
+		
+		<!--  
+		<body>
+        	<div id="pdfContainer" class = "pdf-content"></div>
+    	</body>
+    	-->
+		
+		
+	
+</ui:define >
+</ui:composition >

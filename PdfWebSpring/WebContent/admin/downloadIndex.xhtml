@@ -1,0 +1,78 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="conteudo">
+		<h:form>
+		<p:growl id="msgs" />
+		
+		<h:panelGrid columns ="2">
+		
+		<p:outputLabel for="campo-data-inicio" value="Início:" />
+        <p:calendar value="#{indexBean.dataInicio}" id="campo-data-inicio" required ="true"
+									requiredMessage ="Data de inicio obrigatória"  />
+        
+        <p:outputLabel for="campo-data-fim" value="Fim:" />
+        <p:calendar value="#{indexBean.dataFim}"  id="campo-data-fim" required ="true"
+									requiredMessage ="Data de fim obrigatória"/>		
+		
+		
+	
+		</h:panelGrid >	
+		<br/>
+		<h:commandButton value ="Iniciar download e indexação" onclick="PF('pbAjax').start();PF('startButton2').disable();" action ="#{indexBean.downloadIndex}"  widgetVar="startButton2"/>		
+		<p:message for ="campo-data-inicio"/>
+		<p:message for ="campo-data-fim"/>	
+		
+		<br/><br/>
+		<div id="progressBar" style="width:40%;">
+		<p:growl id="growl" />
+	    
+	    
+	    <br /><br />
+	    <p:progressBar widgetVar="pbAjax" ajax="true" value="#{indexBean.progress}" labelTemplate="{value}%" styleClass="animated" global="false">
+	        <p:ajax event="complete" listener="#{indexBean.onComplete}" update="growl" oncomplete="startButton2.enable()"/>
+	    </p:progressBar>
+		</div>
+	           
+            
+		</h:form>
+		
+		<style type="text/css">
+	 .animated .ui-progressbar-value { 
+	     background-image: url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml"); 
+	 }
+	</style>
+	 
+	<script type="text/javascript">
+	function start() {
+	    PF('startButton1').disable();
+	 
+	    window['progress'] = setInterval(function() {
+	        var pbClient = PF('pbClient'),
+	        oldValue = pbClient.getValue(),
+	        newValue = oldValue + 10;
+	 
+	        pbClient.setValue(pbClient.getValue() + 10);
+	 
+	        if(newValue === 100) {
+	            clearInterval(window['progress']);
+	        }
+	 
+	 
+	    }, 1000);
+	}
+	 
+	function cancel() {
+	    clearInterval(window['progress']);
+	    PF('pbClient').setValue(0);
+	    PF('startButton1').enable();
+	}
+	</script>
+	
+</ui:define >
+</ui:composition >
+

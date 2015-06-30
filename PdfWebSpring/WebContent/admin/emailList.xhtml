@@ -1,0 +1,18 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:define name="conteudo">
+		<h:form>
+		<h:panelGrid columns ="2">
+		<h:commandButton value ="Iniciar envio em massa" action ="#{emailBean.mailToList}"/>	
+		
+		<h:commandButton value ="Iniciar envio termos agrupados" action ="#{emailBean.groupSearchMailToList}"/>	
+		</h:panelGrid >		
+		
+	
+		</h:form>
+</ui:define >
+</ui:composition >

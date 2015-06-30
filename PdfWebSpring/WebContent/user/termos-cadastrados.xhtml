@@ -1,0 +1,131 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="conteudo">
+		<h:form id="form-novo-termo">
+		<p:growl id="msgs" />
+		<h:panelGrid columns ="2">
+		<p:outputLabel for="campo-busca" value="Novo termo de busca:" />
+		<p:inputText value ="#{cadastroBean.novoCadastro.termo}" id="campo-busca" required ="true"
+									requiredMessage ="O termo é obrigatório" />
+		
+		
+		<p:outputLabel for="campo-data" value="Data de validade da busca:" />
+        <p:calendar value="#{cadastroBean.novoCadastro.dataValidade}" id="campo-data" />
+		<h:outputText class="msgm" value="(Deixe em branco para deixar termo ativo indefinidamente)" />
+		</h:panelGrid >
+		<br/>
+		<h:commandButton value ="Cadastrar" action ="#{cadastroBean.storeSearchAndEmail}"/>		
+		<h:outputText  value="Busca Cadastrada" rendered ="#{cadastroBean.cadastrou}" /> 
+			
+		<p:message for ="campo-busca"/>
+		<p:message for ="campo-data"/>	
+		</h:form>
+		
+		<br/><br/><br/>
+		
+		<h:form id="formPrincipal">
+		<h:panelGroup rendered ="#{not empty cadastroBean.termos}">
+		<p:dataTable
+			id="tabela"
+			value="#{cadastroBean.termos}"
+			var ="cadastro"
+			styleClass="tabelaTermos"
+		>
+			
+			<p:column headerText="Termo">
+			
+			#{cadastro.termo}
+			</p:column>
+			
+			<p:column headerText="Data de Cadastro">			
+			<h:outputText value ="#{cadastro.dataCadastro}">
+				<f:convertDateTime pattern ="dd/MM/yyyy" />
+			</h:outputText>
+			</p:column>
+			
+			<p:column headerText="Buscar até">
+			
+			<h:outputText value ="#{cadastro.dataValidade}">
+				<f:convertDateTime pattern ="dd/MM/yyyy" />
+			</h:outputText>
+			</p:column>
+			
+			
+			<p:column headerText="Status">
+			#{cadastro.statusAtividade}			
+			</p:column>
+			
+						
+			<p:column headerText="">
+			
+				
+				<p:commandLink  update=":formAlterar:Alterar"
+				        oncomplete="dialogAlterar.show()" immediate="true">
+				 <f:setPropertyActionListener target="#{cadastroBean.tid}" value="#{cadastro.id}" />
+				 Alterar
+				</p:commandLink>
+				<h:outputText value ="|"/>
+				<p:commandLink title="Excluir" update=":formExcluir:Excluir"
+				        oncomplete="confirmation.show()" immediate="true">
+				<f:setPropertyActionListener target="#{cadastroBean.tid}" value="#{cadastro.id}" />
+				Remover
+				</p:commandLink>
+			</p:column>
+			
+			
+			
+			</p:dataTable>
+			</h:panelGroup>
+			</h:form>
+			
+			<h:form id="formAlterar">
+			        <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+			                id="Alterar">
+			                <p:growl id="msgs1" />
+			                <p:panelGrid id="panelAlterar" columns="3">
+			                        <p:outputLabel value ="Termo:" for ="termo" />
+									<p:inputText
+									id="termo"
+									required ="true"
+									requiredMessage ="O termo é obrigatório"
+									value ="#{cadastroBean.cadastro.termo}">
+									</p:inputText>
+									<p:message for ="termo"/>
+									
+									<p:outputLabel for="dataValidade" value="Buscar até:" />
+        							<p:calendar value="#{cadastroBean.cadastro.dataValidade}" id="dataValidade" />
+									
+									<p:message for ="dataValidade"/>
+									
+							
+			                </p:panelGrid>
+			                <p:commandButton value="Alterar"
+			                        action="#{cadastroBean.atualiza}"
+			                        update=":formPrincipal:tabela"
+			                        oncomplete="dialogAlterar.hide()" />
+			        </p:dialog>
+			</h:form>
+			
+			<h:form id="formExcluir">
+			  <p:confirmDialog id="Excluir"
+			          message="Confirme remoção do termo #{cadastroBean.cadastro.termo}"
+			          header="Excluir" severity="alert" widgetVar="confirmation">
+			
+			          <p:commandButton id="confirm" value="Sim"
+			                  oncomplete="confirmation.hide()"
+			                  action="#{cadastroBean.remove}"
+			                  update=":formPrincipal:tabela" />
+			          <p:commandButton id="decline" value="Não"
+			                  onclick="confirmation.hide()" type="button" />
+			
+			        </p:confirmDialog>
+			</h:form>	
+			
+		
+</ui:define>
+</ui:composition>

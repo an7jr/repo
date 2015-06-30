@@ -1,0 +1,34 @@
+[INFO  - 2015-02-24T16:09:01.148Z] GhostDriver - Main - running on port 3722
+[INFO  - 2015-02-24T16:09:02.026Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.0.0 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2015-02-24T16:09:02.026Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.customHeaders:  - {}
+[INFO  - 2015-02-24T16:09:02.026Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-02-24T16:09:02.026Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 72a31750-bc3f-11e4-8657-9947863447f8
+[ERROR - 2015-02-24T16:09:07.378Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:07.379Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:13.099Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:13.099Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:13.763Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:13.763Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:17.110Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:17.110Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:17.589Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:17.589Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:22.004Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:22.004Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[ERROR - 2015-02-24T16:09:22.603Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('blockrandom').contentDocument.height')
+[ERROR - 2015-02-24T16:09:22.603Z] Session [72a31750-bc3f-11e4-8657-9947863447f8] - page.onError - stack:
+  iFrameHeight (http://www.gdf.df.gov.br/:615)
+  onload (http://www.gdf.df.gov.br/:632)
+[INFO  - 2015-02-24T16:10:33.330Z] ShutdownReqHand - _handle - About to shutdown

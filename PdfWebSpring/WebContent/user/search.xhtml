@@ -1,0 +1,72 @@
+<ui:composition template ="/WEB-INF/templates/template.xhtml"
+xmlns ="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ace="http://www.icefaces.org/icefaces/components"
+xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+<ui:define name="conteudo">		
+
+		<script src="#{request.contextPath}/resources/javascript/jquery-ui.1.11.2.js"/>
+		<script src="#{request.contextPath}/resources/javascript/pag.js.js"/>
+		<script language="javascript" src="#{request.contextPath}/resources/javascript/pag.js" charset="UTF-8"/>
+
+		<h:form>
+		<h:panelGrid columns ="2">
+		<p:inputText value ="#{searchBean.searchValue}" id="campo-busca" />
+		<h:commandButton value ="Buscar" action ="#{searchBean.doSearch}"/>	
+	    <h:outputScript name="javascript/pag.js"/>
+		
+		
+		</h:panelGrid >		
+		
+		
+		</h:form>
+		
+		<h:panelGroup rendered ="#{not empty searchBean.results}">
+		<h2>Resultados:</h2>
+		
+		
+		<h:form>
+		<ul>
+		 <ui:repeat value ="#{searchBean.currentResults}" var ="resultado" >
+		 <li>
+		 
+		 <h:outputText value ="Diario oficial de #{resultado.local} de #{searchBean.dateConvert(resultado.data)} (Secao #{resultado.secao} , Pagina #{resultado.pagina})" rendered="#{searchBean.hasSecao(resultado.secao)}"/>
+		 <h:outputText value ="Diario oficial de #{resultado.local} de #{searchBean.dateConvert(resultado.data)} (Pagina #{resultado.pagina})" rendered="#{not searchBean.hasSecao(resultado.secao)}"/>
+		 	<ul>
+		 	<ui:repeat value ="#{resultado.fragmentos}" var ="fragmento">
+		 	<li>		 	
+		 	<h:outputText class='frag' escape="false" value ="#{fragmento}" />		
+		 	</li>
+		 	</ui:repeat>
+		 <h:commandButton value = "visualizar"  action="#{redirectorBean.pdf(resultado,  searchBean.searchValue)}"/>	
+		 </ul>
+		 </li>
+		 </ui:repeat>
+		 </ul>
+		</h:form>
+		
+		<h:form id = "paginacao" >
+			<h:panelGrid columns="12" styleClass="center">
+				<h:commandLink value="anterior " action="#{searchBean.btnAnt}" rendered="#{not searchBean.first()}" />
+					<h:panelGrid columns="10">
+						<ui:repeat var="number" value="#{searchBean.options}">
+							<h:commandLink value = " #{number} " action="#{searchBean.changeToPage(number)}" class="btn" rendered="#{!(number==searchBean.selectedNumber)}" style="color: red;" />
+							<h:commandLink value = " #{number} " action="#{searchBean.changeToPage(number)}" rendered="#{number==searchBean.selectedNumber}" style="color: black;"  />								
+						</ui:repeat>						
+					</h:panelGrid>
+				<h:commandLink value="proximo" action="#{searchBean.btnProx}" rendered="#{not searchBean.last()}"/>				
+			</h:panelGrid>
+		</h:form>
+		
+				
+		</h:panelGroup>
+		
+		
+	
+</ui:define >
+</ui:composition >
